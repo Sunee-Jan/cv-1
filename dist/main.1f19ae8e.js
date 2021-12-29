@@ -120,22 +120,36 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 })({"main.js":[function(require,module,exports) {
 console.log('hi');
 var demo = document.querySelector("#demo");
-var string = "\u5927\u5BB6\u597D";
-var n = 0;
-demo.innerHTML = string.substring(0, n);
+var string = "\n\u5927\u5BB6\u597D,\n\u6211\u662F\u4E00\u540D\u524D\u7AEF\u65B0\u4EBA,";
+var n = 0; //以下方法会导致浏览器没次打出的字符串会先出现'<',然后才转换为标签的bug，所以舍弃
+// demo.innerHTML = string.substring(0,n);
+// string=string.replaceAll("\n","<br/>")
+// let step=()=> {
+//             setTimeout(() => {
+//             if(n<string.length){
+//                 n=n+1
+//                 demo.innerHTML = string.substring(0,n)
+//                 step()
+//             }        
+//         }, 500);
+// }
+//以下解决了字符串内容逐个打印，使JS无法一次性识别需要换行的标签，产生先将一半标签打印为字符串的bug
+
+var string2 = "";
 
 var step = function step() {
   setTimeout(function () {
     if (n < string.length) {
-      n = n + 1;
-      demo.innerHTML = string.substring(0, n);
+      string2 += string[n] === "\n" ? "<br>" : string[n];
+      demo.innerHTML = string2;
+      n++;
       step();
     }
-  }, 1000);
+  }, 100);
 };
 
 step();
-},{}],"../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -163,7 +177,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53219" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57187" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -339,5 +353,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
+},{}]},{},["../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1f19ae8e.js.map
