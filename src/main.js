@@ -47,7 +47,7 @@ let string=`
       rgba(255, 255, 255, 1) 75%,
       rgba(255, 255, 255, 1) 100%
     );}
-    .box::after {
+.box::after {
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
@@ -63,7 +63,11 @@ let string=`
           rgba(255, 255, 255, 1) 75%,
           rgba(0, 0, 0, 1) 75%,
           rgba(0, 0, 0, 1) 100%
-        );
+        );}
+/*最后，让他转起来*/
+.box{
+    animation: run 1s linear infinite;
+}
 `
 let n=0
 //以下解决了字符串内容逐个打印，使JS无法一次性识别需要换行的标签，产生先将一半标签打印为字符串的bug
@@ -72,7 +76,13 @@ let string3=""
 let step=()=>{
     setTimeout(()=>{
         if(n<string.length){
-          string2+= string[n]==="\n" ? "<br>":string[n] //三元表达式
+            if(string[n]==="\n"){
+                string2+= "<br>"
+            }else if(string[n]===" "){
+                string2+= "&nbsp;"
+            }else{
+                string2+= string[n]
+            }
           window.scrollTo(0,9999)
           html.scrollTo(0,9999)
           string3=string.substring(0,n)
@@ -81,6 +91,6 @@ let step=()=>{
             n++
             step()
         }
-    },50)
+    },30)
 }
 step();

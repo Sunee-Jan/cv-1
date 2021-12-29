@@ -27,6 +27,14 @@ body {
   display: block;
   position: absolute;
 }
+@keyframes run {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @media (max-width: 500px) {
   #html {
     width: 100vw;
@@ -41,4 +49,4 @@ body {
 }
 
 
-/*# sourceMappingURL=style.8aedd12b.css.map */
+/*# sourceMappingURL=/style.e308ff8e.css.map */
