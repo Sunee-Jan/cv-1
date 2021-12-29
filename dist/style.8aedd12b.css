@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+*::after {
+  box-sizing: border-box;
+}
+*::before {
+  box-sizing: border-box;
+}
+body {
+  position: relative;
+}
+.box {
+  position: fixed;
+  left: 50%;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+.box::before {
+  content: "";
+  display: block;
+  position: absolute;
+}
+.box::after {
+  content: "";
+  display: block;
+  position: absolute;
+}
+@media (max-width: 500px) {
+  #html {
+    width: 100vw;
+    height: 50vh;
+    border: 1px solid #9999;
+    overflow: auto;
+  }
+  .box {
+    bottom: 10vh;
+    transform: translateX(-50%);
+  }
+}
+
+
+/*# sourceMappingURL=style.8aedd12b.css.map */
